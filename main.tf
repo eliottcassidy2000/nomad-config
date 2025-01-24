@@ -1,6 +1,5 @@
 provider "nomad" {
   address = "https://your-nomad-server:4646"
-  token   = var.nomad_token
 }
 
 resource "nomad_job" "weed-volume" {
