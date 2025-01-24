@@ -19,6 +19,3 @@ resource "nomad_job" "run-go-binary" {
   jobspec = file("./jobs/run-go-binary.hcl")
 }
 
-
-variable "nomad_token" {}
-
