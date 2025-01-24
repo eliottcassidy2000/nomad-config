@@ -30,4 +30,3 @@ job "go-program" {
     }
   }
 }
-
