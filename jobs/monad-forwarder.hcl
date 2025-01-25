@@ -3,6 +3,11 @@ job "monad-forwarder" {
   type        = "system" # Ensures it runs on every worker
 
   group "monad-forwarder" {
+    network {
+      port "http" {
+        static = 4646 # Use static port 4646
+      }
+    }
     task "monad-forwarder" {
       driver = "exec" # Use "exec" since you are running a binary
 
@@ -37,12 +42,12 @@ job "monad-forwarder" {
         }
       }
 
-      # Expose the HTTP port
-      network {
-        port "http" {
-          static = 4646 # Replace with your desired port
-        }
-      }
+      # # Expose the HTTP port
+      #network {
+      #  port "http" {
+      #    static = 4646 # Replace with your desired port
+      #  }
+      #}
     }
   }
 }

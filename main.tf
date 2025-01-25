@@ -1,5 +1,5 @@
 provider "nomad" {
-  address = "https://100.78.218.70:4648"
+  address = "https://bigo-server-oracle.tail800b49.ts.net/"
 }
 
 resource "nomad_job" "weed-volume" {
