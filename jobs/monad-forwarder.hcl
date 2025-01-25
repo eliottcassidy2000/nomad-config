@@ -8,7 +8,7 @@ job "monad-forwarder" {
         static = 4646 # Use static port 4646
       }
     }
-    task "monad-forwarder" {
+    task "monad-forwarder2" {
       driver = "exec" # Use "exec" since you are running a binary
 
       config {
