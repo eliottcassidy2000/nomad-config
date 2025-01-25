@@ -8,7 +8,7 @@ job "monad-forwarder" {
         static = 4646 # Use static port 4646
       }
     }
-    task "monad-forwarder2" {
+    task "monad-forwarder" {
       driver = "exec" # Use "exec" since you are running a binary
 
       config {
@@ -41,13 +41,6 @@ job "monad-forwarder" {
           timeout  = "2s"
         }
       }
-
-      # # Expose the HTTP port
-      #network {
-      #  port "http" {
-      #    static = 4646 # Replace with your desired port
-      #  }
-      #}
     }
   }
 }
