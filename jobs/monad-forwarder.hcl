@@ -29,6 +29,10 @@ job "monad-forwarder" {
         memory = 128 # Adjust memory as needed
       }
 
+      constraints = [
+        "node.class == client"
+      ]
+
       service {
         name = "monad-forwarder"
         port = "http"
