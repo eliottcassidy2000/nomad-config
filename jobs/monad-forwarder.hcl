@@ -20,7 +20,7 @@ job "monad-forwarder" {
       }
 
       artifact {
-        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/v0.1.1/monad-forwarder_0.1.1_linux_arm64.tar.gz"
+        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/v0.2.0/monad-forwarder_0.2.0_linux_arm64.tar.gz"
         destination = "/tmp/file.tar.gz"
       }
 
