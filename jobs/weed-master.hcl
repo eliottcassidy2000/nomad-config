@@ -1,4 +1,4 @@
-job "seaweed_master" {
+job "weed-master" {
   datacenters = ["dc1"]
   group "master" {
     count = 1

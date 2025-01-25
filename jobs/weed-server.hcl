@@ -1,4 +1,4 @@
-job "seaweed_filer" {
+job "weed-filer" {
   datacenters = ["dc1"]
   group "filer" {
     count = 1

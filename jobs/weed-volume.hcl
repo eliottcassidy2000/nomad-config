@@ -1,4 +1,4 @@
-job "seaweed_volume" {
+job "weed-volume" {
   datacenters = ["dc1"]
   group "volume" {
     count = 2 # Adjust for more nodes
