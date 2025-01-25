@@ -11,8 +11,7 @@ job "go-program" {
         command = "/bin/sh"
         args = [
           "-c",
-          "curl -L -o /bin/my-program https://github.com/your-username/your-repo/releases/latest/download/my-program && " +
-          "chmod +x /bin/my-program && /bin/my-program"
+          "curl -L -o /bin/my-program https://github.com/your-username/your-repo/releases/latest/download/my-program && chmod +x /bin/my-program && /bin/my-program"
         ]
       }
 
