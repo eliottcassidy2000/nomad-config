@@ -19,6 +19,7 @@ job "docker-test" {
       service {
         name = "docker-test"
         port = "http"
+        provider = "nomad"
 
         check {
           name     = "http health check"
