@@ -1,5 +1,6 @@
 job "docker-test" {
   datacenters = ["dc1"] # Replace with your datacenter name(s)
+  type = "service"
 
   group "docker-test" {
     network {
