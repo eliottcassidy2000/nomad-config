@@ -1,5 +1,5 @@
 provider "nomad" {
-  address = "https://bigo-server-oracle.tail800b49.ts.net"
+  address = "https://bigo-server-oracle.tail800b49.ts.net/"
   # address = "http://100.78.218.70:4646"
 }
 
