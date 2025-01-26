@@ -10,3 +10,8 @@ resource "nomad_job" "monad-forwarder" {
 resource "nomad_job" "docker-test" {
   jobspec = file("./jobs/docker-test.hcl")
 }
+
+
+resource "nomad_job" "hello-world" {
+  jobspec = file("./jobs/hello-world.hcl")
+}
