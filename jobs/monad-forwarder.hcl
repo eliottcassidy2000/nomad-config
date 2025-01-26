@@ -1,8 +1,9 @@
 job "monad-forwarder" {
   datacenters = ["dc1"] # Replace with your datacenter name(s)
-  type        = "system" # Ensures it runs on every worker
 
   group "monad-forwarder" {
+    count = "all"
+
     network {
       port "http" {
         static = 4646 # Use static port 4646
