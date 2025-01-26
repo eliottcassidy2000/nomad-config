@@ -1,6 +1,6 @@
 job "monad-forwarder" {
   datacenters = ["dc1"] # Replace with your datacenter name(s)
-  sype = "system"
+  type = "system"
 
   group "monad-forwarder" {
 
