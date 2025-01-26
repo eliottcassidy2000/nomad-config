@@ -4,6 +4,10 @@ job "hello-world" {
   group "web" {
     count = 1
 
+    network {
+      mode = "bridge"
+    }
+
     task "hello-world" {
       driver = "docker"
 
@@ -47,9 +51,5 @@ EOF
         args       = ["/local/hello.py"]
       }
     }
-  }
-
-  network {
-    mode = "bridge"
   }
 }
