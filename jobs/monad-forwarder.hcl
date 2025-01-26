@@ -1,8 +1,8 @@
 job "monad-forwarder" {
   datacenters = ["dc1"] # Replace with your datacenter name(s)
+  sype = "system"
 
   group "monad-forwarder" {
-    count = "all"
 
     network {
       port "http" {
