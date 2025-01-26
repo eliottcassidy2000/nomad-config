@@ -14,9 +14,6 @@ job "monad-forwarder" {
 
       config {
         command = "local/monad-forwarder"
-        env = {
-          NOMAD_TOKEN = "{{ with nomadVar \"nomad/jobs\" }}{{ .NOMAD_ROOT_TOKEN }}{{ end }}"
-        } 
       }
 
       artifact {
@@ -26,6 +23,14 @@ job "monad-forwarder" {
       resources {
         cpu    = 100 # Adjust CPU as needed
         memory = 128 # Adjust memory as needed
+      }
+
+      template {
+        data = <<EOH
+NOMAD_TOKEN="{{with nomadVar "nomad/jobs"}}{{.NOMAD_ROOT_TOKEN}}{{end}}"
+EOH
+        destination = "secrets/file.env"
+        env         = true
       }
 
       service {
