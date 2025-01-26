@@ -14,6 +14,9 @@ job "monad-forwarder" {
 
       config {
         command = "local/monad-forwarder"
+        env = {
+          NOMAD_TOKEN = "{{ with var \"NOMAD_ROOT_TOKEN\" }}{{ .key }}{{ end }}"
+        } 
       }
 
       artifact {
