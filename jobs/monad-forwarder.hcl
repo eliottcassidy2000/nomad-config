@@ -6,7 +6,7 @@ job "monad-forwarder" {
 
     network {
       port "http" {
-        static = 4646 # Use static port 4646
+        static = 4645 # Use static port 4645
       }
     }
     task "monad-forwarder" {
@@ -21,7 +21,7 @@ job "monad-forwarder" {
       }
 
       artifact {
-        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/v0.2.0/monad-forwarder_0.2.0_linux_arm64.tar.gz"
+        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/v0.2.1/monad-forwarder_0.2.1_linux_arm64.tar.gz"
         destination = "/tmp/file.tar.gz"
       }
 
