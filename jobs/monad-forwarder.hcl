@@ -37,6 +37,7 @@ job "monad-forwarder" {
       service {
         name = "monad-forwarder"
         port = "http"
+        provider = "nomad"
 
         check {
           name     = "http health check"
