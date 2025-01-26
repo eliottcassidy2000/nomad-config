@@ -13,16 +13,11 @@ job "monad-forwarder" {
       driver = "exec" # Use "exec" since you are running a binary
 
       config {
-        command = "/bin/bash"
-        args = [
-          "-c",
-          "tar -xzvf /tmp/file.tar.gz -C /tmp && chmod +x /tmp/monad-forwarder && /tmp/monad-forwarder"
-        ]
+        command = "monad-forwarder"
       }
 
       artifact {
         source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/v0.2.1/monad-forwarder_0.2.1_linux_arm64.tar.gz"
-        destination = "/tmp/file.tar.gz"
       }
 
       resources {
