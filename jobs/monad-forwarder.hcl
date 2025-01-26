@@ -13,7 +13,11 @@ job "monad-forwarder" {
       driver = "exec" # Use "exec" since you are running a binary
 
       config {
-        command = "local/monad-forwarder" #Fuck you for this nomad
+        command = "/bin/bash"
+        args = [
+          "-c",
+          "chmod +x local/monad-forwarder && local/monad-forwarder"
+        ]
       }
 
       artifact {
