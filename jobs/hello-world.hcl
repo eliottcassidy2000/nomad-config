@@ -6,7 +6,7 @@ job "hello-world" {
 
     network {
         port "http" {
-        static = 8088
+        to = 8088
         }
     }
 
