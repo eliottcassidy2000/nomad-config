@@ -2,7 +2,11 @@ job "weed-filer" {
   datacenters = ["dc1"]
   group "filer" {
     count = 1
-
+    network {
+      port "filer" {
+        static = 8888
+      }
+    }
     task "filer" {
       driver = "docker"
 
@@ -18,11 +22,6 @@ job "weed-filer" {
       resources {
         cpu    = 500
         memory = 256
-        network {
-          port "filer" {
-            static = 8888
-          }
-        }
       }
     }
   }

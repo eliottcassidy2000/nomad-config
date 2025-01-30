@@ -1,7 +1,12 @@
 job "weed-volume" {
   datacenters = ["dc1"]
   group "volume" {
-    count = 2 # Adjust for more nodes
+    count = 1
+    network {
+      port "volume" {
+        static = 8080
+      }
+    }
 
     task "volume" {
       driver = "docker"
@@ -19,11 +24,6 @@ job "weed-volume" {
       resources {
         cpu    = 500
         memory = 512
-        network {
-          port "volume" {
-            static = 8080
-          }
-        }
       }
     }
   }
