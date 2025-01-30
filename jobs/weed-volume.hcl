@@ -16,7 +16,7 @@ job "weed-volume" {
         args = [
           "volume",
           "-max", "5",
-          "-mserver", "seaweed_master.service.consul:9333"
+          "-mserver", "127.0.0.1:4645/weed-master"
         ]
         ports = ["volume"]
       }
@@ -24,6 +24,20 @@ job "weed-volume" {
       resources {
         cpu    = 500
         memory = 512
+      }
+
+      service {
+        name = "weed-volume"
+        port = "volume"
+        provider = "nomad"
+
+        check {
+          name     = "http health check"
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
       }
     }
   }

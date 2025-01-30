@@ -20,6 +20,20 @@ job "weed-master" {
         cpu    = 500
         memory = 256
       }
+
+      service {
+        name = "weed-master"
+        port = "master"
+        provider = "nomad"
+
+        check {
+          name     = "http health check"
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
+      }
     }
   }
 }
