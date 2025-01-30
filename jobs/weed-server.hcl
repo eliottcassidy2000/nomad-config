@@ -14,7 +14,7 @@ job "weed-filer" {
         image = "chrislusf/seaweedfs:latest"
         args = [
           "filer",
-          "-master", "seaweed_master.service.consul:9333"
+          "-master", "127.0.0.1:4645/weed-master"
         ]
         ports = ["filer"]
       }
