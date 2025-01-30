@@ -13,8 +13,7 @@ job "weed-filer" {
       config {
         image = "chrislusf/seaweedfs:latest"
         args = [
-          "filer",
-          "-master", "127.0.0.1:4645/weed-master"
+          "filer"
         ]
         ports = ["filer"]
       }
