@@ -16,7 +16,7 @@ job "weed-volume" {
         args = [
           "volume",
           "-max", "5",
-          "-mserver", "127.0.0.1:4645/weed-master"
+          "-mserver", "127.0.0.1:4645"
         ]
         ports = ["volume"]
       }
