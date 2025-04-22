@@ -4,9 +4,6 @@ provider "nomad" {
 }
 
 resource "nomad_dynamic_host_volume" "mysql_data" {
-  config {
-    path = "/opt/nomad/volumes/mysql"
-  }
   name      = "mysql_data"
   plugin_id = "mkdir"
 }
