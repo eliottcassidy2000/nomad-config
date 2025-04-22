@@ -3,7 +3,10 @@ provider "nomad" {
   # address = "http://100.78.218.70:4646"
 }
 
-resource nomad_dynamic_host_volume "mysql_data" {
+resource "nomad_dynamic_host_volume" "mysql_data" {
+  config {
+    path = "/opt/nomad/volumes/mysql"
+  }
   name      = "mysql_data"
   plugin_id = "mkdir"
 }
