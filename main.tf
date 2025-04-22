@@ -3,20 +3,6 @@ provider "nomad" {
   # address = "http://100.78.218.70:4646"
 }
 
-resource "nomad_dynamic_host_volume" "mysql_data" {
-  name      = "mysql_data"
-  plugin_id = "mkdir"
-  parameters = {
-    mode = "0755"
-    uid  = 1000
-    gid  = 1000
-  }
-  capability {
-    access_mode     = "single-node-writer"
-    attachment_mode = "file-system"
-  }
-}
-
 #resource "nomad_job" "monad-forwarder" {
 #  jobspec = file("./jobs/monad-forwarder.hcl")
 #}
