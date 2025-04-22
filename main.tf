@@ -16,6 +16,10 @@ resource "nomad_job" "hello-world" {
   jobspec = file("./jobs/hello-world.hcl")
 }
 
+resource "nomad_job" "mysql" {
+  jobspec = file("./jobs/mysql.hcl")
+}
+
 # resource "nomad_job" "weed-master" {
 #   jobspec = file("./jobs/weed-master.hcl")
 # }
