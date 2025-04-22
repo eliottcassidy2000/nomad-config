@@ -3,6 +3,17 @@ provider "nomad" {
   # address = "http://100.78.218.70:4646"
 }
 
+resource "nomad_volume" "mysql_data" {
+  name        = "mysql_data"
+  type        = "host"
+  plugin_id   = "host"
+  external_id = "mysql_data"
+
+  config = {
+    path = "/opt/nomad/volumes/mysql"
+  }
+}
+
 #resource "nomad_job" "monad-forwarder" {
 #  jobspec = file("./jobs/monad-forwarder.hcl")
 #}
