@@ -3,14 +3,22 @@ provider "nomad" {
   # address = "http://100.78.218.70:4646"
 }
 
-resource "nomad_volume" "mysql_data" {
-  name        = "mysql_data"
-  type        = "host"
-  plugin_id   = "host"
-  external_id = "mysql_data"
+resource "nomad_dynamic_host_volume" "mysql_data" {
+  # A name used in Nomad for referencing this volume
+  name      = "mysql_data"
+  plugin_id = "host" # This is always "host" for host volumes
 
-  config = {
+  config {
+    # This is where the volume will be created on the host
+    # Nomad client must have permission to write to this path
     path = "/opt/nomad/volumes/mysql"
+  }
+
+  # Optional: restrict to certain nodes
+  constraints {
+    attribute = "${node.unique.name}"
+    operator  = "regexp"
+    value     = ".*" # all nodes
   }
 }
 
