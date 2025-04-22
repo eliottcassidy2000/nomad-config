@@ -3,16 +3,24 @@ provider "nomad" {
   # address = "http://100.78.218.70:4646"
 }
 
-resource "nomad_dynamic_host_volume" "mysql_data" {
-  # A name used in Nomad for referencing this volume
+resource nomad_dynamic_host_volume "mysql_data" {
   name      = "mysql_data"
-  plugin_id = "host" # This is always "host" for host volumes
+  namespace = "prod"
+  plugin_id = "mkdir"
 
-  config {
-    # This is where the volume will be created on the host
-    # Nomad client must have permission to write to this path
-    path = "/opt/nomad/volumes/mysql"
+  capacity_max = "12 GiB"
+  capacity_min = "1.0 GiB"
+
+  capability {
+    access_mode     = "single-node-writer"
+    attachment_mode = "file-system"
   }
+
+  constraint {
+    attribute = "$${attr.kernel.name}"
+    value     = "linux"
+  }
+
 }
 
 #resource "nomad_job" "monad-forwarder" {
