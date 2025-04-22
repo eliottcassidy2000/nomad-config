@@ -2,6 +2,13 @@ job "mysql" {
   datacenters = ["dc1"]
   type = "service"
 
+  # Explicitly override any unwanted constraints (like Consul version)
+  constraint {
+    attribute = "attr.consul.version"
+    operator  = "!="
+    value     = "bogus" # This ensures Nomad won't filter out nodes without Consul
+  }
+
   group "mysql" {
     count = 1
 
@@ -25,7 +32,7 @@ job "mysql" {
         ports = ["db"]
         env = {
           MYSQL_ROOT_PASSWORD = "rootpassword"
-          MYSQL_DATABASE = "mydb"
+          MYSQL_DATABASE      = "mydb"
         }
       }
 
