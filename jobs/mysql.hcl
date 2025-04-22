@@ -1,163 +1,42 @@
 job "mysql" {
-
   datacenters = ["dc1"]
 
-
-  type = "service"
-
-
-
-
-
-  # Explicitly override any unwanted constraints (like Consul version)
-
-
-  constraint {
-
-
-    attribute = "attr.consul.version"
-
-
-    operator  = "!="
-
-
-    value     = "bogus" # This ensures Nomad won't filter out nodes without Consul
-
-
-  }
-
-
-
-
-
-  group "mysql" {
-
-
-    count = 1
-
-
-
-
-
-    network {
-
-
-      port "db" {
-
-
-        to = 3306
-
-
-      }
-
-
-    }
-
-
-
-
+  group "db" {
     volume "mysql_data" {
-
       type = "host"
 
-
-      source    = "mysql_data"
-
-
-
-        read_only   = false
-
-      }
-
-
-
-
-    task "mysql" {
-
-      driver = "docker"
-
-
-
       config {
-
-
-        image = "mysql:8.0"
-
-        ports = ["db"]
-
-
-        env = {
-
-
-          MYSQL_ROOT_PASSWORD = "rootpassword"
-
-
-          MYSQL_DATABASE      = "mydb"
-
-
-        }
-
-      }
-
-
-
-      volume_mount {
-
-@@ -42,21 +29,14 @@ job "mysql" {
-
+        source      = "/opt/nomad-volumes/mysql_data"
         read_only   = false
-
       }
-
-
-
-
-
-
-
-      resources {
-
-        cpu    = 500
-
-        memory = 512
-
-      }
-
-
-
-
-
-      service {
-
-
-        name = "mysql"
-
-
-        port = "db"
-
-
-
-
-
-        check {
-
-
-          type     = "tcp"
-
-
-          interval = "10s"
-
-
-          timeout  = "2s"
-
-
-        }
-
-
-      }
-
     }
 
-  }
+    task "mysql" {
+      driver = "docker"
 
+      config {
+        image = "mysql:8"
+        ports = ["db"]
+
+        volumes = [
+          "nomad/mysql_data:/var/lib/mysql",
+        ]
+      }
+
+      volume_mount {
+        volume      = "mysql_data"
+        destination = "/var/lib/mysql"
+        read_only   = false
+      }
+
+      env {
+        MYSQL_ROOT_PASSWORD = "supersecret"
+      }
+
+      resources {
+        cpu    = 500
+        memory = 512
+      }
+    }
+  }
 }
