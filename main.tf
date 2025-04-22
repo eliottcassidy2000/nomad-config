@@ -13,13 +13,6 @@ resource "nomad_dynamic_host_volume" "mysql_data" {
     # Nomad client must have permission to write to this path
     path = "/opt/nomad/volumes/mysql"
   }
-
-  # Optional: restrict to certain nodes
-  constraints {
-    attribute = "${node.unique.name}"
-    operator  = "regexp"
-    value     = ".*" # all nodes
-  }
 }
 
 #resource "nomad_job" "monad-forwarder" {
