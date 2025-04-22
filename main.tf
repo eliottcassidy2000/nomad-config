@@ -6,6 +6,10 @@ provider "nomad" {
 resource "nomad_dynamic_host_volume" "mysql_data" {
   name      = "mysql_data"
   plugin_id = "mkdir"
+  capability {
+    access_mode     = "single-node-writer"
+    attachment_mode = "file-system"
+  }
 }
 
 #resource "nomad_job" "monad-forwarder" {
