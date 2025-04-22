@@ -1,41 +1,33 @@
 job "mysql" {
-  datacenters = ["dc1"]
+  datacenters = ["dc1"] # Replace with your datacenter name(s)
+  type = "service"
 
-  group "db" {
-    volume "mysql_data" {
-      type = "host"
-
-      config {
-        source      = "/opt/nomad-volumes/mysql_data"
-        read_only   = false
+  group "mysql" {
+    network {
+      port "http" {
+        to = 80
       }
     }
-
-    task "mysql" {
+    task "myaql" {
       driver = "docker"
 
       config {
-        image = "mysql:8"
-        ports = ["db"]
-
-        volumes = [
-          "nomad/mysql_data:/var/lib/mysql",
-        ]
+        image  = "nginx:latest"
+        ports = ["http"]
       }
 
-      volume_mount {
-        volume      = "mysql_data"
-        destination = "/var/lib/mysql"
-        read_only   = false
-      }
+      service {
+        name = "mysql-test"
+        port = "http"
+        provider = "nomad"
 
-      env {
-        MYSQL_ROOT_PASSWORD = "supersecret"
-      }
-
-      resources {
-        cpu    = 500
-        memory = 512
+        check {
+          name     = "http health check"
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
       }
     }
   }
