@@ -21,8 +21,8 @@ job "monad-forwarder" {
         mounts = [
           {
             type        = "volume"                # mount a Nomad volume
-            source      = "tsnet_state"          # the volume declared above
-            destination = "local/tsnet-state"    # inside the alloc’s sandbox
+            source      = "tmp"          # the volume declared above
+            destination = "tmp"    # inside the alloc’s sandbox
             read_only   = false
           },
         ]
