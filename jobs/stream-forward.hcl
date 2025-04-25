@@ -5,7 +5,7 @@ job "stream-forward" {
   group "stream-forward" {
     network {
       port "http" {
-        to = 8085
+        to = 80
       }
     }
     task "stream-forward" {
@@ -16,7 +16,7 @@ job "stream-forward" {
       }
 
       artifact {
-        source      = "https://github.com/eliottcassidy2000/stream-forward/releases/download/0.0.1/stream-forward_0.0.1_linux_${attr.cpu.arch}.tar.gz"
+        source      = "https://github.com/eliottcassidy2000/stream-forward/releases/download/0.0.0/stream-forward_0.0.0_linux_${attr.cpu.arch}.tar.gz"
       }
 
       resources {
@@ -40,7 +40,7 @@ EOH
         check {
           name     = "http health check"
           type     = "http"
-          path     = "/"
+          path     = "/latest/stream-forward"
           interval = "10s"
           timeout  = "2s"
         }

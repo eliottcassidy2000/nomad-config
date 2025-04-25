@@ -1,5 +1,5 @@
 job "docker-test" {
-  datacenters = ["dc1"] # Replace with your datacenter name(s)
+  datacenters = ["dc1"]
   type = "service"
 
   group "docker-test" {
@@ -24,7 +24,7 @@ job "docker-test" {
         check {
           name     = "http health check"
           type     = "http"
-          path     = "/"
+          path     = "/latest/monad-forwarder"
           interval = "10s"
           timeout  = "2s"
         }
