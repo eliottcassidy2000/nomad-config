@@ -7,11 +7,6 @@ job "stream-forward" {
     task "stream-forward" {
       driver = "exec"
 
-      volume_mount {
-        volume      = "tmp"
-        destination = "/tmp"
-      }
-
       config {
         command = "local/stream-forward"
       }
