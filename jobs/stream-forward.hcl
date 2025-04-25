@@ -1,6 +1,6 @@
 job "stream-forward" {
   datacenters = ["dc1"]
-  type        = "system"
+  type        = "service"
 
   group "stream-forward" {
 
