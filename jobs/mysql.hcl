@@ -8,7 +8,7 @@ job "mysql" {
         to = 80
       }
     }
-    task "myaql" {
+    task "mysql" {
       driver = "docker"
 
       config {

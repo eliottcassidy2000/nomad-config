@@ -3,7 +3,11 @@ job "stream-forward" {
   type        = "service"
 
   group "stream-forward" {
-
+    network {
+      port "http" {
+        to = 8085
+      }
+    }
     task "stream-forward" {
       driver = "exec"
 
@@ -28,7 +32,19 @@ EOH
         destination = "secrets/file.env"
         env         = true
       }
+      service {
+        name = "monad-forwarder"
+        port = "http"
+        provider = "nomad"
 
+        check {
+          name     = "http health check"
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
+      }
     }
   }
 }
