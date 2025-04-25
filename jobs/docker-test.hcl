@@ -12,7 +12,7 @@ job "docker-test" {
       driver = "docker"
 
       config {
-        image  = "nginx:latest"
+        image  = "ghcr.io/eliottcassidy2000/monad-forwarder:0.0.0"
         ports = ["http"]
       }
 
