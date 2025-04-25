@@ -1,23 +1,37 @@
 job "monad-forwarder" {
-  datacenters = ["dc1"] # Replace with your datacenter name(s)
-  type = "system"
+  datacenters = ["dc1"]
+  type        = "system"
 
   group "monad-forwarder" {
 
+    # Mount host /tmp so that the tsnet state directory persists between job restarts
+    volume "tmp" {
+      type      = "host"
+      source    = "tmp"
+      read_only = false
+    }
+
     task "monad-forwarder" {
-      driver = "exec" # Use "exec" since you are running a binary
+      driver = "exec"
 
       config {
         command = "local/monad-forwarder"
+
+        # Bind the host /tmp into the task namespace
+        volume_mount {
+          volume      = "tmp"
+          destination = "/tmp"
+          read_only   = false
+        }
       }
 
       artifact {
-        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/0.0.0/monad-forwarder_0.0.0_linux_${attr.cpu.arch}.tar.gz"
+        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/0.0.1/monad-forwarder_0.0.1_linux_${attr.cpu.arch}.tar.gz"
       }
 
       resources {
-        cpu    = 100 # Adjust CPU as needed
-        memory = 128 # Adjust memory as needed
+        cpu    = 100
+        memory = 128
       }
 
       template {
@@ -28,6 +42,13 @@ EOH
         destination = "secrets/file.env"
         env         = true
       }
+
+      # Set the TSNET_DIR to /tmp/tsnet so your Go code uses it as the server Dir
+      env {
+        key   = "TSNET_DIR"
+        value = "/tmp/tsnet"
+      }
+
     }
   }
 }
