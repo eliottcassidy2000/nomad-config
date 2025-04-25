@@ -33,7 +33,7 @@ EOH
         env         = true
       }
       service {
-        name = "monad-forwarder"
+        name = "stream-forward"
         port = "http"
         provider = "nomad"
 
