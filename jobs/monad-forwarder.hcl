@@ -28,6 +28,7 @@ job "monad-forwarder" {
       template {
         data = <<EOH
 NOMAD_TOKEN="{{with nomadVar "nomad/jobs"}}{{.NOMAD_ROOT_TOKEN}}{{end}}"
+TS_API_KEY="{{with nomadVar "nomad/jobs"}}{{.TS_API_KEY}}{{end}}"
 EOH
         destination = "secrets/file.env"
         env         = true
