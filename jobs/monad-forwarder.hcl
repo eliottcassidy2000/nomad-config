@@ -14,18 +14,13 @@ job "monad-forwarder" {
     task "monad-forwarder" {
       driver = "exec"
 
+      volume_mount {
+        volume      = "tmp"
+        destination = "/tmp"
+      }
+
       config {
         command = "local/monad-forwarder"
-
-        # bind-mount the tsnet_state volume into each alloc
-        mounts = [
-          {
-            type        = "volume"                # mount a Nomad volume
-            source      = "tmp"          # the volume declared above
-            destination = "tmp"    # inside the alloc’s sandbox
-            read_only   = false
-          },
-        ]
       }
 
       artifact {
