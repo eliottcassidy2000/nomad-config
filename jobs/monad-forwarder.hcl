@@ -4,11 +4,6 @@ job "monad-forwarder" {
 
   group "monad-forwarder" {
 
-    network {
-      port "http" {
-        static = 4645 # Use static port 4645
-      }
-    }
     task "monad-forwarder" {
       driver = "exec" # Use "exec" since you are running a binary
 
@@ -32,20 +27,6 @@ TS_API_KEY="{{with nomadVar "nomad/jobs"}}{{.TS_API_KEY}}{{end}}"
 EOH
         destination = "secrets/file.env"
         env         = true
-      }
-
-      service {
-        name = "monad-forwarder"
-        port = "http"
-        provider = "nomad"
-
-        check {
-          name     = "http health check"
-          type     = "http"
-          path     = "/"
-          interval = "10s"
-          timeout  = "2s"
-        }
       }
     }
   }
