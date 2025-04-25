@@ -1,8 +1,8 @@
-job "monad-forwarder" {
+job "monad-forwarderA" {
   datacenters = ["dc1"]
   type        = "system"
 
-  group "monad-forwarder" {
+  group "monad-forwarderB" {
 
     # Mount host /tmp so that the tsnet state directory persists between job restarts
     volume "tmp" {
@@ -11,7 +11,7 @@ job "monad-forwarder" {
       read_only = false
     }
 
-    task "monad-forwarder" {
+    task "monad-forwarderC" {
       driver = "exec"
 
       volume_mount {
