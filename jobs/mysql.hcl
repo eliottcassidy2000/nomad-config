@@ -23,6 +23,10 @@ job "mysql" {
           }
         }
       }
+      resources {
+        cpu    = 1000
+        memory = 4096  
+      }
       env {
         # set a real root password (or use one of the other allowed vars)
         # MYSQL_RANDOM_ROOT_PASSWORD = "yes"
