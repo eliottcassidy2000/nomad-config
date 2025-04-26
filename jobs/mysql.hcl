@@ -3,11 +3,6 @@ job "mysql" {
   type = "service"
 
   group "mysql" {
-  #   volume "tmp" {
-  #     type      = "host"
-  #     source    = "tmp"
-  #     read_only = false
-  #   }
     network {
       port "mysql" {
         to = 3306
@@ -28,7 +23,14 @@ job "mysql" {
           }
         }
       }
-
+      env {
+        # set a real root password (or use one of the other allowed vars)
+        # MYSQL_RANDOM_ROOT_PASSWORD = "yes"
+        MYSQL_ROOT_PASSWORD = "SuperSecret123"
+        # MYSQL_DATABASE      = "myappdb"       # optional
+        # MYSQL_USER          = "appuser"       # optional
+        # MYSQL_PASSWORD      = "AppPassw0rd!"  # optional
+      }
       service {
         name = "mysql-test"
         port = "mysql"
