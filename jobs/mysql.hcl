@@ -2,15 +2,12 @@ job "mysql" {
   datacenters = ["dc1"]
   type = "service"
 
-  group "mysql" {
-    volume "mysql-data" {
-      type      = "host"
-      read_only = false
-
-      config {
-        path = "/opt/nomad/mysql"   # path on the client machine
-      }
-    }
+  # group "mysql" {
+  #   volume "tmp" {
+  #     type      = "host"
+  #     source    = "tmp"
+  #     read_only = false
+  #   }
     network {
       port "http" {
         to = 80
@@ -22,9 +19,14 @@ job "mysql" {
       config {
         image = "mysql:8"
         ports = ["db"]
-        volumes = [
-          "local/mysql-data:/var/lib/mysql",  # host volume to persist data
-        ]
+        mount {
+          type = "tmpfs"
+          target = "/var/lib/mysql"
+          readonly = false
+          tmpfs_options {
+            size = 100000000 # size in bytes
+          }
+        }
       }
 
       service {
