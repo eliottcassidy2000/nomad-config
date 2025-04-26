@@ -19,7 +19,7 @@ job "mysql" {
           target = "/var/lib/mysql"
           readonly = false
           tmpfs_options {
-            size = 100000000 # size in bytes
+            size = 10000000000 # size in bytes
           }
         }
       }
