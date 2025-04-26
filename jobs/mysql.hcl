@@ -1,8 +1,16 @@
 job "mysql" {
-  datacenters = ["dc1"] # Replace with your datacenter name(s)
+  datacenters = ["dc1"]
   type = "service"
 
   group "mysql" {
+    volume "mysql-data" {
+      type      = "host"
+      read_only = false
+
+      config {
+        path = "/opt/nomad/mysql"   # path on the client machine
+      }
+    }
     network {
       port "http" {
         to = 80
@@ -12,8 +20,11 @@ job "mysql" {
       driver = "docker"
 
       config {
-        image  = "nginx:latest"
-        ports = ["http"]
+        image = "mysql:8"
+        ports = ["db"]
+        volumes = [
+          "local/mysql-data:/var/lib/mysql",  # host volume to persist data
+        ]
       }
 
       service {
