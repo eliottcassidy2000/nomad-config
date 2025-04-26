@@ -25,7 +25,7 @@ job "monad-forwarder" {
 
       artifact {
         #source      = "https://docker-test-docker-test0-7/latest/monad-forwarder"
-        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/0.0.2/monad-forwarder_0.0.2_linux_${attr.cpu.arch}.tar.gz"
+        source      = "https://github.com/eliottcassidy2000/monad-forwarder/releases/download/0.0.3/monad-forwarder_0.0.3_linux_${attr.cpu.arch}.tar.gz"
       }
 
       resources {
