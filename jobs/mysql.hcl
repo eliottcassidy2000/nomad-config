@@ -2,7 +2,7 @@ job "mysql" {
   datacenters = ["dc1"]
   type = "service"
 
-  # group "mysql" {
+  group "mysql" {
   #   volume "tmp" {
   #     type      = "host"
   #     source    = "tmp"
