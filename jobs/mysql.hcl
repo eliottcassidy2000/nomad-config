@@ -18,7 +18,7 @@ job "mysql" {
 
       config {
         image = "mysql:8"
-        ports = ["db"]
+        ports = ["mysql"]
         mount {
           type = "tmpfs"
           target = "/var/lib/mysql"
