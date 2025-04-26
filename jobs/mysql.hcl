@@ -9,8 +9,8 @@ job "mysql" {
   #     read_only = false
   #   }
     network {
-      port "http" {
-        to = 80
+      port "mysql" {
+        to = 3306
       }
     }
     task "mysql" {
@@ -31,14 +31,14 @@ job "mysql" {
 
       service {
         name = "mysql-test"
-        port = "http"
+        port = "mysql"
         provider = "nomad"
 
         check {
-          name     = "http health check"
+          name     = "mysql http health check"
           type     = "http"
           path     = "/"
-          interval = "10s"
+          interval = "30s"
           timeout  = "2s"
         }
       }
