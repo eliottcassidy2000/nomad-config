@@ -5,7 +5,7 @@ job "docker-test" {
   group "docker-test" {
     network {
       port "http" {
-        to = 80
+        to = 8085
       }
     }
     task "docker-test" {
