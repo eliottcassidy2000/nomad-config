@@ -12,7 +12,7 @@ job "docker-test" {
       driver = "docker"
 
       config {
-        image  = "ghcr.io/eliottcassidy2000/stream-forward:0.0.2"
+        image  = "ghcr.io/eliottcassidy2000/stream-forward:0.0.3"
         ports = ["http"]
       }
 
@@ -24,7 +24,7 @@ job "docker-test" {
         check {
           name     = "http health check"
           type     = "http"
-          path     = "/latest/stream-forward/${attr.cpu.arch}/${attr.os.name}"
+          path     = "/latest/stream-forward/amd64/linux"
           interval = "80s"
           timeout  = "2s"
         }

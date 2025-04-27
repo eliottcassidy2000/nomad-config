@@ -42,7 +42,7 @@ EOH
         check {
           name     = "http health check"
           type     = "http"
-          path     = "/latest/stream-forward/${attr.cpu.arch}/${attr.os.name}"
+          path     = "/latest/stream-forward/amd64/linux"
           interval = "80s"
           timeout  = "2s"
         }
