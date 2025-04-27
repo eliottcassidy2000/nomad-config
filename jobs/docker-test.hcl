@@ -24,8 +24,8 @@ job "docker-test" {
         check {
           name     = "http health check"
           type     = "http"
-          path     = "/latest/monad-forwarder"
-          interval = "10s"
+          path     = "/latest/stream-forward/${attr.cpu.arch}/${attr.os.name}"
+          interval = "80s"
           timeout  = "2s"
         }
       }
