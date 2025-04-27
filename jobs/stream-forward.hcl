@@ -16,8 +16,8 @@ job "stream-forward" {
       }
 
       artifact {
-        #source      = "http://docker-test-docker-test0/latest/stream-forward"
-        source      = "http://100.90.246.72/latest/stream-forward"
+        source      = "http://docker-test-docker-test0/latest/stream-forward/${attr.cpu.arch}/${attr.os.name}"
+        #source      = "http://100.90.246.72/latest/stream-forward/${attr.cpu.arch}/${attr.os.name}"
         #source      = "https://github.com/eliottcassidy2000/stream-forward/releases/download/0.0.0/stream-forward_0.0.0_linux_${attr.cpu.arch}.tar.gz"
       }
 

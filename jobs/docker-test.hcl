@@ -12,7 +12,7 @@ job "docker-test" {
       driver = "docker"
 
       config {
-        image  = "ghcr.io/eliottcassidy2000/stream-forward:0.0.0"
+        image  = "ghcr.io/eliottcassidy2000/stream-forward:0.0.2"
         ports = ["http"]
       }
 
