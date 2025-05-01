@@ -15,6 +15,9 @@ resource "nomad_job" "docker-test" {
   jobspec = file("./jobs/docker-test.hcl")
 }
 
+resource "nomad_job" "vault" {
+  jobspec = file("./jobs/vault.hcl")
+}
 
 resource "nomad_job" "hello-world" {
   jobspec = file("./jobs/hello-world.hcl")
