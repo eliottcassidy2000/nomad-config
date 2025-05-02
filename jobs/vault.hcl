@@ -40,8 +40,8 @@ job "vault" {
       config {
         image = "hashicorp/vault:latest"
         # lets do this manually for now
-        command = "/bin/sh"
-        args = []
+        command = "sleep"
+        args = ["999999"]
         # args  = ["server", "-config=/vault/config/vault.hcl"]
         ports = ["http", "cluster"]
         mount {
