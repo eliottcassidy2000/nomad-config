@@ -103,11 +103,11 @@ EOF
         memory = 512
       }
 
-      volume_mount {
-        volume      = "vault_data"
-        destination = "/vault/data"
-        read_only   = false
-      }
+    #   volume_mount {
+    #     volume      = "vault_data"
+    #     destination = "/vault/data"
+    #     read_only   = false
+    #   }
     }
   }
 }
