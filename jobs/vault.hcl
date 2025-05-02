@@ -38,7 +38,7 @@ job "vault" {
       driver = "docker"
 
       config {
-        cap_add = ["IPC_LOCK"]
+        #cap_add = ["IPC_LOCK"]
         image = "hashicorp/vault:latest"
         # lets do this manually for now
         command = "sleep"
