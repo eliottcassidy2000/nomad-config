@@ -66,7 +66,7 @@ disable_mlock = true
 # Integrated Storage (Raft)
 storage "raft" {
   path    = "/vault/data"
-  node_id = "{{ env \"NOMAD_ALLOC_ID\" }}"
+  node_id = "{{ env "NOMAD_ALLOC_ID" }}"
 }
 
 listener "tcp" {
@@ -81,34 +81,24 @@ listener "tcp" {
   tls_disable     = 1
 }
 
-# Auto-unseal with AWS KMS
-seal "awskms" {
-  region     = "us-east-1"
-  kms_key_id = "your-kms-key-id"
-}
+## Auto-unseal with AWS KMS
+#seal "awskms" {
+#  region     = "us-east-1"
+#  kms_key_id = "your-kms-key-id"
+#}
 
-# Advertised addresses for clients & peers
-api_addr     = "http://{{ env \"attr.unique.network.ip-address\" }}:8200"
-cluster_addr = "http://{{ env \"attr.unique.network.ip-address\" }}:8201"
+api_addr     = "http://{{ env "attr.unique.network.ip-address" }}:8200"
+cluster_addr = "http://{{ env "attr.unique.network.ip-address" }}:8201"
 EOF
       }
 
       env {
-        # Set AWS creds here if not using instance profile:
-        # AWS_ACCESS_KEY_ID     = "..."
-        # AWS_SECRET_ACCESS_KEY = "..."
       }
 
       resources {
         cpu    = 500
         memory = 512
       }
-
-    #   volume_mount {
-    #     volume      = "vault_data"
-    #     destination = "/vault/data"
-    #     read_only   = false
-    #   }
     }
   }
 }
