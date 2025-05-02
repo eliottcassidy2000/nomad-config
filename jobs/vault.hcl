@@ -14,14 +14,14 @@ job "vault" {
       }
     }
 
-    # Use CSI local plugin for dynamic, node-local persistent storage
-    volume "vault_data" {
-      type         = "csi"
-      plugin_id    = "csi-local"
-      capacity_min = "10Gi"
-      access_mode  = "single-node-writer"
-      # external_id can be left empty; Nomad will generate a unique one per allocation
-    }
+    # # Use CSI local plugin for dynamic, node-local persistent storage
+    # volume "vault_data" {
+    #   type         = "csi"
+    #   plugin_id    = "csi-local"
+    #   capacity_min = "10Gi"
+    #   access_mode  = "single-node-writer"
+    #   # external_id can be left empty; Nomad will generate a unique one per allocation
+    # }
 
     service {
       name = "vault"
@@ -40,11 +40,18 @@ job "vault" {
         image = "hashicorp/vault:latest"
         args  = ["server", "-config=/vault/config/vault.hcl"]
         ports = ["http", "cluster"]
-
-        volumes = [
-          "local/config:/vault/config",
-          "vault_data:/vault/data"
-        ]
+        mount {
+          type = "tmpfs"
+          target = "/vault/data"
+          readonly = false
+          tmpfs_options {
+            size = 1000000000 # size in bytes
+          }
+        }
+        # volumes = [
+        #   "local/config:/vault/config",
+        #   "vault_data:/vault/data"
+        # ]
       }
 
       # Vault configuration with Integrated Storage (Raft) + AWS KMS auto-unseal
