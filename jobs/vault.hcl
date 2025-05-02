@@ -3,7 +3,7 @@ job "vault" {
   type        = "service"
 
   group "vault" {
-    count = 3
+    count = 1
 
     network {
       port "http" {
