@@ -26,6 +26,7 @@ job "vault" {
     service {
       name = "vault"
       port = "http"
+      provider = "nomad"
       check {
         type     = "tcp"
         interval = "10s"
