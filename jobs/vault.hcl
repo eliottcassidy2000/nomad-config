@@ -38,6 +38,8 @@ job "vault" {
       driver = "docker"
 
       config {
+        # lets do this manually
+        command = "/bin/bash"
         image = "hashicorp/vault:latest"
         args  = ["server", "-config=/vault/config/vault.hcl"]
         ports = ["http", "cluster"]
