@@ -38,10 +38,11 @@ job "vault" {
       driver = "docker"
 
       config {
-        # lets do this manually
-        command = "/bin/sh"
         image = "hashicorp/vault:latest"
-        args  = ["server", "-config=/vault/config/vault.hcl"]
+        # lets do this manually for now
+        command = "/bin/sh"
+        args = []
+        # args  = ["server", "-config=/vault/config/vault.hcl"]
         ports = ["http", "cluster"]
         mount {
           type = "tmpfs"
